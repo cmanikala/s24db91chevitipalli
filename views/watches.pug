@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{watch_brand:'Gshock',watch_type:'digital&analog',cost:1000},{watch_brand:'Rolex',watch_type:'analog',cost:1500},{watch_brand:'casio',watch_type:'digital',cost:200}]
+  div(class="container-fluid")
+    div(class="row")
+      each item, index in results  
+        div(class="col-sm-2",onclick=`buy(${index})`)
+          p #{item.watch_brand} 
+          p #{item.watch_type}
+          p #{item.cost} 
+  script.
+    function buy(index) {
+    alert("You purchased item " + index);}
