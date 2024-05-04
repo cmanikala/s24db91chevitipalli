@@ -3,13 +3,19 @@ extends layout
 block content
   h1= title
   - let items = results
+  - let destinatin = `dispatch(\"/watches/create\")`
+    button.btn( class="btn-primary ml-1", onclick= destinatin) Create
   div(class="container-fluid")
-    div(class="row")
-      each item, index in results  
-        div(class="col-sm-2",onclick=`buy(${index})`)
-          p #{item.watch_brand} 
-          p #{item.watch_type}
-          p #{item.cost} 
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch(\"/watches/update?id=${item._id}\")`
+        - let destinatio = `dispatch(\"/watches/delete?id=${item._id}\")`
+        - let destinati = `dispatch(\"/watches/detail?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.watch_type}(#{item.watch_brand}) is #{item.cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destinatio) Delete
+          button.btn( class="btn-primary ml-1", onclick= destinati) Detail
   script.
-    function buy(index) {
-    alert("You purchased item " + index);}
+    function dispatch(path){
+      window.location.href=path
+      }
