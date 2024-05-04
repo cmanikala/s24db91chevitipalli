@@ -2,13 +2,13 @@ extends layout
 block content
   h1= title
   form(id='watchForm', action="/resource/watch", method="POST")
-    div.form-group
+    div.form-group(style="color:white;background-color:black")
       label.watchAttr(for='watch_type') watch type
       input#watch_type(type='text', name='watch_type')
-    div.form-group
+    div.form-group(style="color:white;background-color:black")
       label.watchAttr(for='watch_brand') watch brand
       input#watch_brand(type='text', name='watch_brand')
-    div.form-group
+    div.form-group(style="color:white;background-color:black")
       label.watchAttr(for='cost') watch cost
       input#cost(type='number', name='cost')
     input(type="submit")

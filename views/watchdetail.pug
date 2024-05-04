@@ -1,20 +1,23 @@
 extends layout
 block content
   h1= title
-  - let watchid = toShow._id
-  - let watch_type = toShow.watch_type
-  - let cost = toShow.cost
-  - let watch_brand= toShow.watch_brand
-  div
-    div.row
-      div(class='watchAttr mr-3') watch ID is:
-      div #{watchid}
-    div.row
-      div(class='watchAttr mr-3') watch Type is:
-      div #{watch_type}
-    div.row
-      div(class='watchAttr mr-3') watch brand is:
-      div #{watch_brand}
-    div.row
-      div(class='watchAttr mr-3') watch Cost is:
-      div #{cost}
+  if (toShow == null)
+    h2 No instance to delete
+  else  
+    - let watchid = toShow._id
+    - let watch_type = toShow.watch_type
+    - let cost = toShow.cost
+    - let watch_brand= toShow.watch_brand
+    div
+      div.row
+        div(class='watchAttr mr-3') watch ID is:
+        div #{watchid}
+      div.row
+        div(class='watchAttr mr-3') watch Type is:
+        div #{watch_type}
+      div.row
+        div(class='watchAttr mr-3') watch brand is:
+        div #{watch_brand}
+      div.row
+        div(class='watchAttr mr-3') watch Cost is:
+        div #{cost}

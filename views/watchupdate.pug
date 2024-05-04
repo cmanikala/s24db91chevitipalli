@@ -1,39 +1,42 @@
 extends layout
 block content
   h1= title
-  - let watchid = toShow._id
-  - let watch_type = toShow.watch_type
-  - let cost = toShow.cost
-  - let watch_brand = toShow.watch_brand
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{watchid}
-  - let actionid = "/resource/watch/" + watchid
-  form(id='watchForm', action= actionid, method="PUT")
-    div.form-group
-      label.watchAttr(for='watch_type') watch type
-      input#watch_type(type='text', name='watch_type', value= watch_type )
-    div.form-group
-      label.watchAttr(for='watch_brand')  watch brand
-      input#watch_brand(type='text', name='watch_brand', value= watch_brand )
-    div.form-group
-      label.watchAttr(for='cost') watch cost
-      input#cost(type='number', name='cost', value= cost )
-    input(type="submit")
-  script.
-    document.forms['watchForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let watchid = toShow._id
+    - let watch_type = toShow.watch_type
+    - let cost = toShow.cost
+    - let watch_brand = toShow.watch_brand
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{watchid}
+    - let actionid = "/resource/watch/" + watchid
+    form(id='watchForm', action= actionid, method="PUT")
+      div.form-group
+        label.watchAttr(for='watch_type') watch type
+        input#watch_type(type='text', name='watch_type', value= watch_type )
+      div.form-group
+        label.watchAttr(for='watch_brand')  watch brand
+        input#watch_brand(type='text', name='watch_brand', value= watch_brand )
+      div.form-group
+        label.watchAttr(for='cost') watch cost
+        input#cost(type='number', name='cost', value= cost )
+      input(type="submit")
+    script.
+      document.forms['watchForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error )
+        });
       });
-    });
